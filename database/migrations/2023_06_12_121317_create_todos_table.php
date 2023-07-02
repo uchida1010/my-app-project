@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('todos', function (Blueprint $table) {
-            $table->increments('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->increments('id');
+            $table->foreignId('user_id');
             $table->string('name',100);
             $table->string('rank',100);
             $table->date('deadline');
