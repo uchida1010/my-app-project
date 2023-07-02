@@ -6,7 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Database\Factories\TodoFactory;
-use App\Models\Todo
+use App\Models\Todo;
+
 class UserSeeder extends Seeder
 {
     /**
@@ -16,9 +17,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        Todos::factory()
+        User::factory()
             ->count(10)
-            ->hasUsers(50)
+            ->hasTodos(50)
             ->create();
     }
 }
