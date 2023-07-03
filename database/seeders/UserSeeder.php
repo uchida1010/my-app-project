@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
     {
         User::factory()
             ->count(10)
-            ->hasTodos(50)
+            ->hasTodo(50)
             ->create();
     }
 }
