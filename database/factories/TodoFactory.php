@@ -19,8 +19,12 @@ class TodoFactory extends Factory
     {
         $rank = ["高", "中", "低"];
 
+        for($i = 1; $i <= 10; $i++) {
+            $todo[] = "やること" . $i;
+        }
+
         return [
-            'name' => fake()->name(),
+            'name' => Arr::random($todo),
             'rank' => Arr::random($rank),
             'deadline' => fake()-> dateTimeBetween('+1 week', '+2 week'),
             'schedule' => fake()-> dateTimeBetween('now', '+1 week'),
