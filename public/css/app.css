@@ -39,11 +39,12 @@ td {
     background-color: rgb(108, 182, 225);
     display: flex;
     width: 100%;
-    height: 70px;
+    height: 100px;
     margin-bottom: 20px;
     color: white;
     font-weight: bold;
     padding: 20px 40px;
+    align-items: center;
 }
 
 .logo-wrap {
@@ -107,8 +108,8 @@ th:nth-child(10) {
 }
 
 /* ページ送りを中央寄せ */
-.pagination {
-    text-align: center;
+.pagination-links {
+    justify-content: center;
 }
 
 /* ページ送りを横並びに */

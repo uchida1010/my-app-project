@@ -1,9 +1,6 @@
 <!-- Navigation -->
     <div class="header-container">
         <div class="logo-wrap">
-        <!-- <a class="logo-img" href="#">
-           <img src=" {{ asset('./img/todo_logo.png') }}">
-        </a> -->
         <div class="logo-text">
             Laravel TODOアプリ
         </div>

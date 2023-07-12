@@ -46,7 +46,9 @@
     <!--/テーブル-->
 
     <!-- ページネーション -->
+    <div class="pagination-links">
     {{ $todos->links('') }}
+    </div>
 </div>
 
 @yield('layout.footer')
