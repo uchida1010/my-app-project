@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('todolist', [TodoListController::class, 'getIndex']);
+
+Route::get('todolist', [TodoListController::class, 'index']);

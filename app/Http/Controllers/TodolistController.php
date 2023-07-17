@@ -13,7 +13,65 @@ class TodoListController extends Controller
     {
         $todos = Todo::paginate(10);
 
-        return view('todolist.index')->with('todos',$todos);
+        return view('todolist.index')->with('todos', $todos);
     }
 
+    public function index(Request $request)
+    {
+
+        $todos = Todo::paginate(10);
+
+        $todo_name = $request->input('todo_name');
+        $rank = $request->input('rank');
+        $lower_limit = $request->input('lower_limit');
+        $upper_limit = $request->input('upper_limit');
+        $progress = $request->input('progress');
+        $others = $request->input('others');
+
+        $query = Todo::query();
+
+        if (!empty($todo_name)) {
+            $query = $query->where('name', 'like', '%' . $todo_name . '%');
+        }
+
+        if ($rank === "選択してください") {
+            $query = $query->where('rank', '!=', $rank);
+        } elseif (!empty($rank)) {
+            $query = $query->where('rank', $rank);
+        }
+
+        if (!empty($lower_limit) && !empty($upper_limit)) {
+            $query = $query->whereBetween("deadline", [$lower_limit, $upper_limit]);
+        } elseif (!empty($lower_limit) && empty($upper_limit)) {
+            $query = $query->whereBetween("deadline", [$lower_limit, '2999/12/31']);
+        } elseif (empty($lower_limit) && !empty($upper_limit)) {
+            $query = $query->whereBetween("deadline", ['2000/01/01', $upper_limit]);
+        }
+
+        if ($progress === "選択してください") {
+            $query = $query->where('progress', '!=', $progress);
+        } elseif ($progress === "有") {
+            $query = $query->where('progress', 100);
+        } else {
+            $query = $query->where('progress', '!=', 100);
+        }
+
+        if (!empty($others)) {
+            $query = $query->where('others', 'like', '%' . $others . '%');
+        }
+
+        $todos = $query->paginate(10);
+
+        $todos_array = [
+            'todos' => $todos,
+            'todo_name' => $todo_name,
+            'rank' => $rank,
+            'lower_limit' => $lower_limit,
+            'upper_limit' => $upper_limit,
+            'progress' => $progress,
+            'others' => $others
+        ];
+
+        return view('todolist.index')->with($todos_array);
+    }
 }
