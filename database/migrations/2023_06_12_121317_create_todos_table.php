@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('rank',100);
             $table->date('deadline');
             $table->date('schedule');
-            $table->integer('progress');
+            $table->string('progress');
             $table->string('others',1000);
             $table->timestamps();
         });

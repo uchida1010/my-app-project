@@ -20,12 +20,12 @@
                 <form action="{{url('todolist')}}" method="get">
                     <div class="search-flex">
                         <div class="search-item">
-                            TODO名：<input type="text" name="todo_name" value="{{ old('$todo_name') }}" placeholder="TODO名を入力">
+                            TODO名：<input type="text" name="todo_name" value="{{ $todo_name }}" placeholder="TODO名を入力">
                         </div>
                         <div class="search-item">
                             優先順位：
                             <select name="rank">
-                                <option value="選択してください">選択してください</option>
+                                <option value="">選択してください</option>
                                 <option value="高">高</option>
                                 <option value="中">中</option>
                                 <option value="低">低</option>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="search-item">
                             完了：<select name="progress">
-                                <option value="選択してください">選択してください</option>
+                                <option value="">選択してください</option>
                                 <option value="有">有</option>
                                 <option value="無">無</option>
                             </select>
@@ -48,7 +48,8 @@
                             備考：<input type="text" name="others" value="{{ $others }}" placeholder="キーワードを入力">
                         </div>
                     </div>
-                    <div class="search-flex">
+                    <div class="search-flex search-item">
+                        <input type="reset" value="クリア">
                         <input type="submit" value="検索" class="btn btn-info">
                     </div>
                 </form>
@@ -66,7 +67,7 @@
                     <th>優先順位</th>
                     <th>期限</th>
                     <th>完了予定</th>
-                    <th>進捗(%)</th>
+                    <th>完了(有無)</th>
                     <th>備考</th>
                     <th>編集</th>
                     <th>削除</th>
@@ -81,7 +82,7 @@
                     <td>{{ $todo->rank }}</td>
                     <td>{{ $todo->deadline }}</td>
                     <td>{{ $todo->schedule }}</td>
-                    <td>{{ $todo->progress }}%</td>
+                    <td>{{ $todo->progress }}</td>
                     <td>{{ $todo->others }}</td>
                     <td><button type="button" class="btn btn-primary">編集</button></td>
                     <td><button type="button" class="btn btn-danger">削除</button></td>

@@ -34,25 +34,21 @@ class TodoListController extends Controller
             $query = $query->where('name', 'like', '%' . $todo_name . '%');
         }
 
-        if ($rank === "選択してください") {
-            $query = $query->where('rank', '!=', $rank);
-        } elseif (!empty($rank)) {
+        if (!empty($rank)) {
             $query = $query->where('rank', $rank);
         }
 
         if (!empty($lower_limit) && !empty($upper_limit)) {
             $query = $query->whereBetween("deadline", [$lower_limit, $upper_limit]);
         } elseif (!empty($lower_limit) && empty($upper_limit)) {
-            $query = $query->whereBetween("deadline", [$lower_limit, '2999/12/31']);
+            $query = $query->where("deadline", ">=", $lower_limit);
         } elseif (empty($lower_limit) && !empty($upper_limit)) {
-            $query = $query->whereBetween("deadline", ['2000/01/01', $upper_limit]);
+            $query = $query->where("deadline", "<=" ,$upper_limit);
         }
 
-        if ($progress === "選択してください") {
-            $query = $query->where('progress', '!=', $progress);
-        } elseif ($progress === "有") {
+        if ($progress === "有") {
             $query = $query->where('progress', 100);
-        } else {
+        } elseif ($progress === "無") {
             $query = $query->where('progress', '!=', 100);
         }
 
