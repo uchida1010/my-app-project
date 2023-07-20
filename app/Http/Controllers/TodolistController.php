@@ -9,13 +9,6 @@ use Illuminate\Pagination\Paginator;
 
 class TodoListController extends Controller
 {
-    public function getIndex()
-    {
-        $todos = Todo::paginate(10);
-
-        return view('todolist.index')->with('todos', $todos);
-    }
-
     public function index(Request $request)
     {
 
@@ -27,6 +20,9 @@ class TodoListController extends Controller
         $upper_limit = $request->input('upper_limit');
         $progress = $request->input('progress');
         $others = $request->input('others');
+
+        $rank_array = ['高', '中', '低'];
+        $progress_array = ['有', '無'];
 
         $query = Todo::query();
 
@@ -47,9 +43,9 @@ class TodoListController extends Controller
         }
 
         if ($progress === "有") {
-            $query = $query->where('progress', 100);
+            $query = $query->where('progress', $progress);
         } elseif ($progress === "無") {
-            $query = $query->where('progress', '!=', 100);
+            $query = $query->where('progress', $progress);
         }
 
         if (!empty($others)) {
@@ -65,7 +61,9 @@ class TodoListController extends Controller
             'lower_limit' => $lower_limit,
             'upper_limit' => $upper_limit,
             'progress' => $progress,
-            'others' => $others
+            'others' => $others,
+            'rank_array' => $rank_array,
+            'progress_array' => $progress_array
         ];
 
         return view('todolist.index')->with($todos_array);

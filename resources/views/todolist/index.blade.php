@@ -25,10 +25,10 @@
                         <div class="search-item">
                             優先順位：
                             <select name="rank">
-                                <option value="">選択してください</option>
-                                <option value="高">高</option>
-                                <option value="中">中</option>
-                                <option value="低">低</option>
+                                <option value="" >選択してください</option>
+                                @foreach($rank_array as $rank_value)
+                                <option value="{{ $rank_value }}" @if("$rank_value" == $rank) selected @endif >{{ $rank_value }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -38,10 +38,12 @@
                             　<input type="date" name="upper_limit" value="{{ $upper_limit }}">
                         </div>
                         <div class="search-item">
-                            完了：<select name="progress">
-                                <option value="">選択してください</option>
-                                <option value="有">有</option>
-                                <option value="無">無</option>
+                            完了：
+                            <select name="progress">
+                                <option value="" >選択してください</option>
+                                @foreach($progress_array as $progress_value)
+                                <option value="{{$progress_value}}" @if("$progress_value" == $progress) selected @endif>{{ $progress_value }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="search-item">
@@ -49,8 +51,8 @@
                         </div>
                     </div>
                     <div class="search-flex search-item">
-                        <input type="reset" value="クリア">
-                        <input type="submit" value="検索" class="btn btn-info">
+                    <a href="{{ url('todolist')}}" class="clear-btn">クリア</a>               
+                   <input type="submit" value="検索" class="btn btn-info">
                     </div>
                 </form>
             </div>
