@@ -42,9 +42,7 @@ class TodoListController extends Controller
             $query = $query->where("deadline", "<=" ,$upper_limit);
         }
 
-        if ($progress === "有") {
-            $query = $query->where('progress', $progress);
-        } elseif ($progress === "無") {
+        if (!empty($progress)) {
             $query = $query->where('progress', $progress);
         }
 
