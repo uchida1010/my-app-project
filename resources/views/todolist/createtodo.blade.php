@@ -31,15 +31,13 @@
                             <tr>
                                 <th>期限</th>
                                 <td>
-                                    <input type="date" name="lower_limit" value="">　〜
-                                    　<input type="date" name="upper_limit" value="">
+                                    <input type="date" name="lower_limit" value="">
                                 </td>
                             </tr>
                             <tr>
                                 <th>完了予定</th>
                                 <td>
-                                    <input type="date" name="lower_limit" value="">　〜
-                                    　<input type="date" name="upper_limit" value="">
+                                    <input type="date" name="lower_limit" value="">
                                 </td>
                             </tr>
                             <tr>
