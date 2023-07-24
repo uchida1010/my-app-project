@@ -66,4 +66,17 @@ class TodoListController extends Controller
 
         return view('todolist.index')->with($todos_array);
     }
+
+    public function createTodo() {
+
+        $rank_array = ['高', '中', '低'];
+        $progress_array = ['有', '無'];
+
+        $todos_array = [
+            'rank_array' => $rank_array,
+            'progress_array' => $progress_array
+        ];
+
+        return view('todolist.createtodo')->with($todos_array);
+    }
 }

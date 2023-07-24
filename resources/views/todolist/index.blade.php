@@ -2,11 +2,11 @@
 @section('title', 'Laravel TODOアプリ 学習用')
 @section('content')
 
-@yield('layout.header')
 <div class="main-container">
     <div class="main-text">
         <h1>Laravel TODOアプリ チュートリアル</h1>
         <p>学習用としてデモページを作成しています。</p>
+        <a href="{{ url('todolist/create') }}" class="btn btn-success">新規作成</a>
     </div>
     <div class="search-wrap">
         <div class="search-title">
@@ -52,8 +52,8 @@
                     </div>
                     <div class="search-flex search-item">
                     <a href="{{ url('todolist')}}" class="clear-btn">クリア</a>               
-                   <input type="submit" value="検索" class="btn btn-info">
-                    </div>
+                   <input type="submit" value="検索" class="btn btn-info btn-search">
+                    </div> 
                 </form>
             </div>
         </div>
@@ -101,5 +101,4 @@
     </div>
 </div>
 
-@yield('layout.footer')
 @endsection

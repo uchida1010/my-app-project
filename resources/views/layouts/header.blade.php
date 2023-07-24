@@ -1,8 +1,10 @@
-<!-- Navigation -->
+<header class="header">
     <div class="header-container">
         <div class="logo-wrap">
         <div class="logo-text">
-            Laravel TODOアプリ
+        <a href="{{ url('todolist')}}">
+        Laravel TODOアプリ
+        </a>
         </div>
         </div>
         
@@ -24,4 +26,4 @@
             </ul>
         </div>
     </div>
-<!-- / Navigation -->
+</header>
