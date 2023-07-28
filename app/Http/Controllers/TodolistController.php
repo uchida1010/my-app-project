@@ -21,9 +21,6 @@ class TodoListController extends Controller
         $progress = $request->input('progress');
         $others = $request->input('others');
 
-        $rank_array = ['高', '中', '低'];
-        $progress_array = ['有', '無'];
-
         $query = Todo::query();
 
         if (!empty($todo_name)) {
@@ -39,7 +36,7 @@ class TodoListController extends Controller
         } elseif (!empty($lower_limit) && empty($upper_limit)) {
             $query = $query->where("deadline", ">=", $lower_limit);
         } elseif (empty($lower_limit) && !empty($upper_limit)) {
-            $query = $query->where("deadline", "<=" ,$upper_limit);
+            $query = $query->where("deadline", "<=", $upper_limit);
         }
 
         if (!empty($progress)) {
@@ -60,23 +57,26 @@ class TodoListController extends Controller
             'upper_limit' => $upper_limit,
             'progress' => $progress,
             'others' => $others,
-            'rank_array' => $rank_array,
-            'progress_array' => $progress_array
+            'rank_array' => FormValue::rank_array,
+            'progress_array' => FormValue::progress_array
         ];
 
         return view('todolist.index')->with($todos_array);
     }
 
-    public function createTodo() {
-
-        $rank_array = ['高', '中', '低'];
-        $progress_array = ['有', '無'];
-
+    public function createTodo(Request $request)
+    {
         $todos_array = [
-            'rank_array' => $rank_array,
-            'progress_array' => $progress_array
+            'rank_array' => FormValue::rank_array,
+            'progress_array' => FormValue::progress_array
         ];
 
         return view('todolist.createtodo')->with($todos_array);
     }
+}
+
+class FormValue
+{
+    const rank_array = ['高', '中', '低'];
+    const progress_array = ['有', '無'];
 }
