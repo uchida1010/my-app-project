@@ -18,9 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('todolist', [TodoListController::class, 'index']);
-
     Route::prefix('todolist')->group(function () {
+        Route::get('/', [TodoListController::class, 'index']);
         Route::get('create',[TodoListController::class, 'createTodo']
         );
     });

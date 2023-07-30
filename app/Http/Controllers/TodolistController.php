@@ -6,6 +6,7 @@ use App\Models\Todo;
 use Database\Seeders\UserSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use App\Http\Const\FormValue;
 
 class TodoListController extends Controller
 {
@@ -73,10 +74,4 @@ class TodoListController extends Controller
 
         return view('todolist.createtodo')->with($todos_array);
     }
-}
-
-class FormValue
-{
-    const rank_array = ['高', '中', '低'];
-    const progress_array = ['有', '無'];
 }
