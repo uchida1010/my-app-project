@@ -10,7 +10,7 @@
     <div class="search-wrap">
         <div class="create-box">
             <div class="search-form">
-                <form action="{{url('todolist/create')}}" method="post">
+                <form action="{{ url('todolist/create') }}" method="post">
                 @csrf
                     <table class="create-table">
                         <tbody>
