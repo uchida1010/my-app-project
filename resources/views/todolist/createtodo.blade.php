@@ -10,7 +10,11 @@
     <div class="search-wrap">
         <div class="create-box">
             <div class="search-form">
+<<<<<<< HEAD
                 <form action="{{ url('todolist/create') }}" method="post">
+=======
+                <form action="{{url('todolist/execute')}}" method="post">
+>>>>>>> refs/remotes/origin/main
                 @csrf
                     <table class="create-table">
                         <tbody>
