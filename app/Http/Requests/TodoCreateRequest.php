@@ -30,7 +30,7 @@ class TodoCreateRequest extends FormRequest
             'limit' => 'required|date|after:today',
             'completed' => 'required|date|before_or_equal:completed',
             'progress' => ['required', Rule::in(['有', '無'])],
-            'others' => 'required|max:255'
+            'others' => 'max:255'
           ];
     }
 

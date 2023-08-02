@@ -10,17 +10,19 @@
     <div class="search-wrap">
         <div class="create-box">
             <div class="search-form">
-<<<<<<< HEAD
                 <form action="{{ url('todolist/create') }}" method="post">
-=======
-                <form action="{{url('todolist/execute')}}" method="post">
->>>>>>> refs/remotes/origin/main
-                @csrf
+                    @csrf
                     <table class="create-table">
                         <tbody>
                             <tr>
                                 <th>TODO名</th>
-                                <td><input type="text" name="todo_name" value="" placeholder="TODO名を入力"></td>
+                                <td><input type="text" name="todo_name" value="" placeholder="TODO名を入力">
+                                    @if ($errors->has('todo_name'))
+                                    <div class="text-danger">
+                                        <p>{{$errors->first('todo_name')}}</p>
+                                    </div>
+                                    @endif
+                                </td>
                             </tr>
                             <tr class="create-row">
                                 <th>優先順位</th>
@@ -31,18 +33,33 @@
                                         <option value="{{ $rank_value }}">{{ $rank_value }}</option>
                                         @endforeach
                                     </select>
+                                    @if ($errors->has('rank'))
+                                    <div class="text-danger">
+                                        <p>{{$errors->first('rank')}}</p>
+                                    </div>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
                                 <th>期限</th>
                                 <td>
                                     <input type="date" name="limit" value="{{ $limit }}">
+                                    @if ($errors->has('limit'))
+                                    <div class="text-danger">
+                                        <p>{{$errors->first('limit')}}</p>
+                                    </div>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
                                 <th>完了予定</th>
                                 <td>
                                     <input type="date" name="completed" value="{{ $completed }}">
+                                    @if ($errors->has('completed'))
+                                    <div class="text-danger">
+                                        <p>{{$errors->first('completed')}}</p>
+                                    </div>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -54,6 +71,11 @@
                                         <option value="{{$progress_value}}">{{ $progress_value }}</option>
                                         @endforeach
                                     </select>
+                                    @if ($errors->has('progress'))
+                                    <div class="text-danger">
+                                        <p>{{$errors->first('progress')}}</p>
+                                    </div>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -61,10 +83,15 @@
                                 <td>
                                     <textarea type="text" name="others" value="{{ $others }}" placeholder="キーワードを入力"></textarea>
                                 </td>
+                                @if ($errors->has('progress'))
+                                <div class="text-danger">
+                                    <p>{{$errors->first('progress')}}</p>
+                                </div>
+                                @endif
                             </tr>
                         </tbody>
                     </table>
-                        <input type="submit" value="登録" class="btn btn-info btn-register">
+                    <input type="submit" value="登録" class="btn btn-info btn-register">
                 </form>
             </div>
         </div>
