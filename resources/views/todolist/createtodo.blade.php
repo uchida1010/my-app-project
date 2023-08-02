@@ -10,7 +10,8 @@
     <div class="search-wrap">
         <div class="create-box">
             <div class="search-form">
-                <form action="{{url('todolist')}}" method="get">
+                <form action="{{url('todolist/execute')}}" method="post">
+                @csrf
                     <table class="create-table">
                         <tbody>
                             <tr>
@@ -31,13 +32,13 @@
                             <tr>
                                 <th>期限</th>
                                 <td>
-                                    <input type="date" name="lower_limit" value="">
+                                    <input type="date" name="limit" value="{{ $limit }}">
                                 </td>
                             </tr>
                             <tr>
                                 <th>完了予定</th>
                                 <td>
-                                    <input type="date" name="lower_limit" value="">
+                                    <input type="date" name="completed" value="{{ $completed }}">
                                 </td>
                             </tr>
                             <tr>
@@ -54,7 +55,7 @@
                             <tr>
                                 <th>備考</th>
                                 <td>
-                                    <textarea type="text" name="others" value="" placeholder="キーワードを入力"></textarea>
+                                    <textarea type="text" name="others" value="{{ $others }}" placeholder="キーワードを入力"></textarea>
                                 </td>
                             </tr>
                         </tbody>
