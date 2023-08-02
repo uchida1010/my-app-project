@@ -7,9 +7,11 @@ use Database\Seeders\UserSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use App\Http\Const\FormValue;
+use App\Http\Requests\TodoCreateRequest;
 
 class TodoListController extends Controller
 {
+
     public function index(Request $request)
     {
 
@@ -65,13 +67,31 @@ class TodoListController extends Controller
         return view('todolist.index')->with($todos_array);
     }
 
-    public function createTodo(Request $request)
+    public function showCreateTodo()
     {
+        $todo_name = "";
+        $limit = "";
+        $completed = "";
+        $others ="";
+
         $todos_array = [
+
             'rank_array' => FormValue::rank_array,
             'progress_array' => FormValue::progress_array
         ];
 
-        return view('todolist.createtodo')->with($todos_array);
+        return view('todolist.createtodo', compact('todo_name', 'limit', 'completed', 'others'))->with($todos_array);
+    }
+
+    public function executeCreateTodo(TodoCreateRequest $request)
+    {
+        $validated = $request->validated();
+
+        $todo_name = $validated['todo_name'];
+        $limit = $validated['limit'];
+        $completed = $validated['completed'];
+        $others = $validated['others'];
+
+        return view('todolist.index');
     }
 }

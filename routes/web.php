@@ -20,6 +20,6 @@ Route::get('/', function () {
 
     Route::prefix('todolist')->group(function () {
         Route::get('/', [TodoListController::class, 'index']);
-        Route::get('create',[TodoListController::class, 'createTodo']
-        );
+        Route::get('create',[TodoListController::class, 'showCreateTodo']);
+        Route::post('create',[TodoListController::class, 'executeCreateTodo']);
     });
