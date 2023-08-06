@@ -82,12 +82,12 @@
                                 <th>備考</th>
                                 <td>
                                     <textarea type="text" name="others" value="{{ $others }}" placeholder="キーワードを入力"></textarea>
-                                </td>
-                                @if ($errors->has('progress'))
+                                    @if ($errors->has('others'))
                                 <div class="text-danger">
-                                    <p>{{$errors->first('progress')}}</p>
+                                    <p>{{$errors->first('others')}}</p>
                                 </div>
                                 @endif
+                                </td>
                             </tr>
                         </tbody>
                     </table>
