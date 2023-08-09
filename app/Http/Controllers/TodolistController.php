@@ -87,11 +87,8 @@ class TodoListController extends Controller
     {
         $validated = $request->validated();
 
-        $todo_name = $validated['todo_name'];
-        $limit = $validated['limit'];
-        $completed = $validated['completed'];
-        $others = $validated['others'];
+        $todocreate = create($validated);
 
-        return view('todolist.index');
+        return redirect('todolist.index');
     }
 }
