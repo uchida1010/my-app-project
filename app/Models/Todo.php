@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Http\Requests\TodoCreateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TodoListController;
+use Illuminate\Database\QueryException;
 
 class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['todo_name', 'rank', 'limit', 'completed', 'progress', 'others'];
+    protected $fillable = $validated;
 
     public function user(): BelongsTo
     {
@@ -22,7 +23,7 @@ class Todo extends Model
 
     public function create($validated) {
 
-        DB::transaction(function () use($validated) {
+        try {
             todos::create([
                 'todo_name' => $validated['todo_name'],
                 'rank' => $validated['rank'],
@@ -31,6 +32,10 @@ class Todo extends Model
                 'progress' => $validated['progress'],
                 'others' => $validated['others']
             ]);
-        });
+        } catch (QueryException $e) {
+            dd("catch QueryException");
+        } catch (\Exception $e) {
+            dd("catch \Exception");
+        }
       }
 }
