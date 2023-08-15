@@ -9,12 +9,13 @@ use App\Http\Requests\TodoCreateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TodoListController;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\QueryException;
 
 class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['todo_name', 'rank', 'limit', 'completed', 'progress', 'others'];
+    protected $fillable = $validated;
 
     public function user(): BelongsTo
     {
