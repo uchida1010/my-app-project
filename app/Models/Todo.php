@@ -15,7 +15,7 @@ class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = $validated;
+    protected $fillable = ['todo_name', 'rank', 'limit', 'completed', 'progress', 'others'];
 
     public function user(): BelongsTo
     {
