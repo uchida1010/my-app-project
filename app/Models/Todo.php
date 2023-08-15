@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Http\Requests\TodoCreateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TodoListController;
+use Illuminate\Support\Facades\Log;
 
 class Todo extends Model
 {
@@ -20,17 +21,12 @@ class Todo extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function create($validated) {
-
-        DB::transaction(function () use($validated) {
-            todos::create([
-                'todo_name' => $validated['todo_name'],
-                'rank' => $validated['rank'],
-                'limit' => $validated['limit'],
-                'completed' => $validated['completed'],
-                'progress' => $validated['progress'],
-                'others' => $validated['others']
-            ]);
-        });
-      }
+    public function create($validated)
+    {
+        try {
+            todos::create($validated);
+        } catch (QueryException $e) {
+            Log::error("登録失敗！");
+        }
+    }
 }
