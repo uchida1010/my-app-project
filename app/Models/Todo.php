@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\TodoListController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 
 class Todo extends Model
 {
@@ -24,10 +25,12 @@ class Todo extends Model
 
     public function create($validated)
     {
-        try {
-            todos::create($validated);
-        } catch (QueryException $e) {
-            Log::error("登録失敗！");
-        }
+        DB::transaction(function () use ($validated) {
+            try {
+                todo::create($validated);
+            } catch (QueryException $e) {
+                Log::error("TODOの登録に失敗しました。");
+            }
+        });
     }
 }

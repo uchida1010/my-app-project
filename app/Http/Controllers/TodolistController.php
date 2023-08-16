@@ -87,8 +87,10 @@ class TodoListController extends Controller
     {
         $validated = $request->validated();
 
-        $todocreate = create($validated);
+        $todos = new Todo;
 
-        return redirect('todolist.index');
+        $todocreate = $todos->create($validated);
+
+        return redirect('todolist.index')->with($todocreate);
     }
 }
