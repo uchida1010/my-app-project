@@ -25,12 +25,15 @@ class Todo extends Model
 
     public function create($validated)
     {
-        DB::transaction(function () use ($validated) {
+        
             try {
+                DB::beginTransaction();
                 todo::create($validated);
+                DB::commit();
             } catch (QueryException $e) {
+                DB::beginTransaction();
                 Log::error("TODOの登録に失敗しました。");
+                DB::rollBack();
             }
-        });
     }
 }

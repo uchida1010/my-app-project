@@ -91,6 +91,6 @@ class TodoListController extends Controller
 
         $todocreate = $todos->create($validated);
 
-        return redirect('todolist.index')->with($todocreate);
+        return redirect('todolist/index')->with($todocreate);
     }
 }

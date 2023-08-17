@@ -8,8 +8,6 @@ use Illuminate\Validation\Rule;
 class TodoCreateRequest extends FormRequest
 {
 
-    protected $redirect = 'todolist/create';
-
     /**
      * Determine if the user is authorized to make this request.
      *
