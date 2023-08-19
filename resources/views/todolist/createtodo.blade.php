@@ -16,10 +16,10 @@
                         <tbody>
                             <tr>
                                 <th>TODO名</th>
-                                <td><input type="text" name="todo_name" value="" placeholder="TODO名を入力">
+                                <td><input type="text" name="todo_name" value="{{old('todo_name')}}" placeholder="TODO名を入力">
                                     @if ($errors->has('todo_name'))
                                     <div class="text-danger">
-                                        <p>{{$errors->first('todo_name')}}</p>
+                                        {{$errors->first('todo_name')}}
                                     </div>
                                     @endif
                                 </td>
@@ -30,12 +30,12 @@
                                     <select name="rank">
                                         <option value="">選択してください</option>
                                         @foreach($rank_array as $rank_value)
-                                        <option value="{{ $rank_value }}">{{ $rank_value }}</option>
+                                        <option value="{{$rank_value}}" @selected($rank_value == old('rank'))>{{ $rank_value }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('rank'))
                                     <div class="text-danger">
-                                        <p>{{$errors->first('rank')}}</p>
+                                        {{$errors->first('rank')}}
                                     </div>
                                     @endif
                                 </td>
@@ -43,10 +43,10 @@
                             <tr>
                                 <th>期限</th>
                                 <td>
-                                    <input type="date" name="limit" value="{{ $limit }}">
+                                    <input type="date" name="limit" value="{{old('limit')}}">
                                     @if ($errors->has('limit'))
                                     <div class="text-danger">
-                                        <p>{{$errors->first('limit')}}</p>
+                                        {{$errors->first('limit')}}
                                     </div>
                                     @endif
                                 </td>
@@ -54,10 +54,10 @@
                             <tr>
                                 <th>完了予定</th>
                                 <td>
-                                    <input type="date" name="completed" value="{{ $completed }}">
+                                    <input type="date" name="completed" value="{{old('completed')}}">
                                     @if ($errors->has('completed'))
                                     <div class="text-danger">
-                                        <p>{{$errors->first('completed')}}</p>
+                                        {{$errors->first('completed')}}
                                     </div>
                                     @endif
                                 </td>
@@ -68,12 +68,12 @@
                                     <select name="progress">
                                         <option value="">選択してください</option>
                                         @foreach($progress_array as $progress_value)
-                                        <option value="{{$progress_value}}">{{ $progress_value }}</option>
+                                        <option value="{{$progress_value}}" @selected($progress_value == old('progress'))>{{ $progress_value }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('progress'))
                                     <div class="text-danger">
-                                        <p>{{$errors->first('progress')}}</p>
+                                        {{$errors->first('progress')}}
                                     </div>
                                     @endif
                                 </td>
@@ -81,10 +81,10 @@
                             <tr>
                                 <th>備考</th>
                                 <td>
-                                    <textarea type="text" name="others" value="{{ $others }}" placeholder="キーワードを入力"></textarea>
+                                    <textarea type="text" name="others" value="{{ $others }}" placeholder="キーワードを入力">{{ old('others') }}</textarea>
                                     @if ($errors->has('others'))
                                 <div class="text-danger">
-                                    <p>{{$errors->first('others')}}</p>
+                                    {{$errors->first('others')}}
                                 </div>
                                 @endif
                                 </td>

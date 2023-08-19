@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
-use Database\Seeders\UserSeeder;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
 use App\Http\Const\FormValue;
 use App\Http\Requests\TodoCreateRequest;
 
@@ -89,8 +87,8 @@ class TodoListController extends Controller
 
         $todos = new Todo;
 
-        $todocreate = $todos->create($validated);
+        $todocreate = $todos->addTodo($validated);
 
-        return redirect('todolist/index')->with($todocreate);
+        return redirect('todolist', $todocreate);
     }
 }
