@@ -89,6 +89,10 @@ class TodoListController extends Controller
 
         $todocreate = $todos->addTodo($validated);
 
-        return redirect('todolist', $todocreate);
+        if($todocreate === false) {
+            return redirect('todolist/create');
+        } elseif($todocreate === true) {
+            return redirect('todolist');
+        }
     }
 }

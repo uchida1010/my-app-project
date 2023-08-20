@@ -26,10 +26,11 @@ class Todo extends Model
             DB::beginTransaction();
             Todo::create($validated);
             DB::commit();
+            return true;
         } catch (QueryException $e) {
             Log::error("TODOの登録に失敗しました。".$e);
             DB::rollBack();
-            return redirect('todolist/create');
+            return false;
         }
     }
 }
