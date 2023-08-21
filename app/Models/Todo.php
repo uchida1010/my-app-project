@@ -28,7 +28,7 @@ class Todo extends Model
             DB::commit();
             return true;
         } catch (QueryException $e) {
-            Log::error("TODOの登録に失敗しました。".$e);
+            Log::error("TODOの登録に失敗しました。");
             DB::rollBack();
             return false;
         }
