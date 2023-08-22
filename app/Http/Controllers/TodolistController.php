@@ -70,7 +70,7 @@ class TodoListController extends Controller
         $name = "";
         $deadline = "";
         $schedule = "";
-        $others ="";
+        $others = "";
 
         $todos_array = [
 
@@ -89,10 +89,9 @@ class TodoListController extends Controller
 
         $todocreate = $todos->addTodo($validated);
 
-        if($todocreate === false) {
+        if ($todocreate === false) {
             return redirect('todolist/create')->withInput();
-        } elseif($todocreate === true) {
-            return redirect('todolist');
         }
+        return redirect('todolist');
     }
 }
