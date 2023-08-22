@@ -13,7 +13,7 @@ class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['todo_name', 'rank', 'limit', 'completed', 'progress', 'others'];
+    protected $fillable = ['name', 'rank', 'deadline', 'schedule', 'progress', 'others'];
 
     public function user(): BelongsTo
     {

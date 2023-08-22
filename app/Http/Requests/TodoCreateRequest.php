@@ -26,10 +26,10 @@ class TodoCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'todo_name' => 'required|max:255',
+            'name' => 'required|max:255',
             'rank' => ['required', Rule::in(['高', '中','低'])],
-            'limit' => 'required|date|after:today',
-            'completed' => 'required|date|after:limit',
+            'deadline' => 'required|date|after:today',
+            'schedule' => 'required|date|after:deadline',
             'progress' => ['required', Rule::in(['有', '無'])],
             'others' => 'max:255'
           ];
@@ -44,16 +44,16 @@ public function messages()
 {
     return 
           [
-            'todo_name.required' => ':attributeを入力してください',
-            'todo_name.max' => '文字数の範囲内で入力してください',
+            'name.required' => ':attributeを入力してください',
+            'name.max' => '文字数の範囲内で入力してください',
             'rank.required' => ':attributeを選択してください',
             'rank' => ':attributeを正しく選択してください',
-            'limit.required' => ':attributeを入力してください',
-            'limit.date' => ':attributeを正しく入力してください',
-            'limit.after' => '今日以降の日付を入力してください',
-            'completed.required' => ':attributeを入力してください',
-            'completed.date' => ':attributeを正しく入力してください',
-            'completed.after' => '期限以降の日付を入力してください',
+            'deadline.required' => ':attributeを入力してください',
+            'deadline.date' => ':attributeを正しく入力してください',
+            'deadline.after' => '今日以降の日付を入力してください',
+            'schedule.required' => ':attributeを入力してください',
+            'schedule.date' => ':attributeを正しく入力してください',
+            'schedule.after' => '期限以降の日付を入力してください',
             'progress.required' => ':attributeを選択してください',
             'progress' => ':attributeを正しく選択してください',
             'others.max' => '文字数の範囲内で入力してください'
@@ -63,10 +63,10 @@ public function messages()
 public function attributes(): array
 {
     return [
-        'todo_name' => 'TODO名',
+        'name' => 'TODO名',
         'rank' => '優先順位',
-        'limit' => '期限',
-        'completed' => '完了予定',
+        'deadline' => '期限',
+        'schedule' => '完了予定',
         'progress' => '完了(有無)'
     ];
 }

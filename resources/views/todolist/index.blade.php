@@ -20,7 +20,7 @@
                 <form action="{{url('todolist')}}" method="get">
                     <div class="search-flex">
                         <div class="search-item">
-                            TODO名：<input type="text" name="todo_name" value="{{ $todo_name }}" placeholder="TODO名を入力">
+                            TODO名：<input type="text" name="name" value="{{ $name }}" placeholder="TODO名を入力">
                         </div>
                         <div class="search-item">
                             優先順位：

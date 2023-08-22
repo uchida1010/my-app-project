@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
             $table->string('name',100);
             $table->string('rank',100);
             $table->date('deadline');
             $table->date('schedule');
             $table->string('progress');
-            $table->string('others',1000);
+            $table->string('others')->nullable();
             $table->timestamps();
         });
     }

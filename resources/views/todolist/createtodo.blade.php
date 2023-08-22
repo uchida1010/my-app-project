@@ -16,10 +16,10 @@
                         <tbody>
                             <tr>
                                 <th>TODO名</th>
-                                <td><input type="text" name="todo_name" value="{{old('todo_name')}}" placeholder="TODO名を入力">
-                                    @if ($errors->has('todo_name'))
+                                <td><input type="text" name="name" value="{{old('name')}}" placeholder="TODO名を入力">
+                                    @if ($errors->has('name'))
                                     <div class="text-danger">
-                                        {{$errors->first('todo_name')}}
+                                        {{$errors->first('name')}}
                                     </div>
                                     @endif
                                 </td>
@@ -43,10 +43,10 @@
                             <tr>
                                 <th>期限</th>
                                 <td>
-                                    <input type="date" name="limit" value="{{old('limit')}}">
-                                    @if ($errors->has('limit'))
+                                    <input type="date" name="deadline" value="{{old('deadline')}}">
+                                    @if ($errors->has('deadline'))
                                     <div class="text-danger">
-                                        {{$errors->first('limit')}}
+                                        {{$errors->first('deadline')}}
                                     </div>
                                     @endif
                                 </td>
@@ -54,10 +54,10 @@
                             <tr>
                                 <th>完了予定</th>
                                 <td>
-                                    <input type="date" name="completed" value="{{old('completed')}}">
-                                    @if ($errors->has('completed'))
+                                    <input type="date" name="schedule" value="{{old('schedule')}}">
+                                    @if ($errors->has('schedule'))
                                     <div class="text-danger">
-                                        {{$errors->first('completed')}}
+                                        {{$errors->first('schedule')}}
                                     </div>
                                     @endif
                                 </td>

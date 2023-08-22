@@ -15,7 +15,7 @@ class TodoListController extends Controller
 
         $todos = Todo::paginate(10);
 
-        $todo_name = $request->input('todo_name');
+        $name = $request->input('name');
         $rank = $request->input('rank');
         $lower_limit = $request->input('lower_limit');
         $upper_limit = $request->input('upper_limit');
@@ -24,8 +24,8 @@ class TodoListController extends Controller
 
         $query = Todo::query();
 
-        if (!empty($todo_name)) {
-            $query = $query->where('name', 'like', '%' . $todo_name . '%');
+        if (!empty($name)) {
+            $query = $query->where('name', 'like', '%' . $name . '%');
         }
 
         if (!empty($rank)) {
@@ -52,7 +52,7 @@ class TodoListController extends Controller
 
         $todos_array = [
             'todos' => $todos,
-            'todo_name' => $todo_name,
+            'name' => $name,
             'rank' => $rank,
             'lower_limit' => $lower_limit,
             'upper_limit' => $upper_limit,
@@ -67,9 +67,9 @@ class TodoListController extends Controller
 
     public function showCreateTodo()
     {
-        $todo_name = "";
-        $limit = "";
-        $completed = "";
+        $name = "";
+        $deadline = "";
+        $schedule = "";
         $others ="";
 
         $todos_array = [
@@ -78,7 +78,7 @@ class TodoListController extends Controller
             'progress_array' => FormValue::progress_array
         ];
 
-        return view('todolist.createtodo', compact('todo_name', 'limit', 'completed', 'others'))->with($todos_array);
+        return view('todolist.createtodo', compact('name', 'deadline', 'schedule', 'others'))->with($todos_array);
     }
 
     public function executeCreateTodo(TodoCreateRequest $request)
@@ -90,7 +90,7 @@ class TodoListController extends Controller
         $todocreate = $todos->addTodo($validated);
 
         if($todocreate === false) {
-            return redirect('todolist/create');
+            return redirect('todolist/create')->withInput();
         } elseif($todocreate === true) {
             return redirect('todolist');
         }
