@@ -26,6 +26,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
 require __DIR__.'/auth.php';
+
+Route::prefix('todolist')->group(function () {
+    Route::get('/', [App\Http\Controllers\TodoListController::class, 'index']);
+    Route::get('create',[TodoListController::class, 'showCreateTodo']);
+    Route::post('create',[TodoListController::class, 'executeCreateTodo']);
+});
+

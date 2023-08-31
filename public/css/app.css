@@ -205,3 +205,9 @@ input {
     color: white;
     text-decoration: none;
 }
+
+.btn-logout {
+    border-style: none;
+    background-color: transparent;
+    font-weight: bold;
+}
