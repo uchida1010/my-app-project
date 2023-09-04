@@ -24,17 +24,11 @@ class Todo extends Model
     public function addTodo($validated)
     {
 
-        $user_id = Auth::id();
+        $user = Auth::user();
 
         try {
             DB::beginTransaction();
             Todo::create($validated);
-            $user = User::find(1);
-            $user->create([
-                'user_id' => $user_id
-            ]);
-            Todo::create([
-                'user_id' => $user_id]);
             DB::commit();
             return true;
         } catch (QueryException $e) {
