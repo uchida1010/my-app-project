@@ -9,12 +9,13 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'rank', 'deadline', 'schedule', 'progress', 'others'];
+    protected $fillable = ['name', 'rank', 'deadline', 'schedule', 'progress', 'others'];
 
     public function user(): BelongsTo
     {
@@ -28,7 +29,7 @@ class Todo extends Model
 
         try {
             DB::beginTransaction();
-            Todo::create($validated);
+            $user->create($validated);
             DB::commit();
             return true;
         } catch (QueryException $e) {
@@ -36,10 +37,5 @@ class Todo extends Model
             DB::rollBack();
             return false;
         }
-    }
-
-    public function Todo()
-    {
-        return $this->morphOne(User::class, 'imageable');
     }
 }
