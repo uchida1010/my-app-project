@@ -14,6 +14,7 @@ use App\Models\User;
 class Todo extends Model
 {
     use HasFactory;
+    protected $todos;
 
     protected $fillable = ['name', 'rank', 'deadline', 'schedule', 'progress', 'others'];
 
@@ -29,7 +30,8 @@ class Todo extends Model
 
         try {
             DB::beginTransaction();
-            $user->create($validated);
+            $this->todo->$user->create([$validated,
+                'user_id' => $user]);
             DB::commit();
             return true;
         } catch (QueryException $e) {
