@@ -29,7 +29,8 @@ class Todo extends Model
 
         try {
             DB::beginTransaction();
-            $this->todo->$user->create($validated);
+            $this->todo->$user->create([$validated,
+                'user_id' => $user]);
             DB::commit();
             return true;
         } catch (QueryException $e) {
