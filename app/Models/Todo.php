@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Todo extends Model
 {
@@ -31,8 +30,8 @@ class Todo extends Model
 
         try {
             DB::beginTransaction();
-            $users->todo()->create([$validated,
-            'user_id' => $user['id']]);
+            $validated[] = ['user_id' => $user];
+            $users->todo()->create($validated);
             DB::commit();
             return true;
         } catch (QueryException $e) {
