@@ -26,12 +26,10 @@ class Todo extends Model
     {
 
         $user = Auth::user();
-        $users = new User;
 
         try {
             DB::beginTransaction();
-            $validated[] = ['user_id' => $user];
-            $users->todo()->create($validated);
+            $user->todo()->create($validated);
             DB::commit();
             return true;
         } catch (QueryException $e) {
