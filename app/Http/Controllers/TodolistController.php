@@ -6,6 +6,7 @@ use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Const\FormValue;
 use App\Http\Requests\TodoCreateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TodoListController extends Controller
 {
@@ -21,6 +22,7 @@ class TodoListController extends Controller
         $upper_limit = $request->input('upper_limit');
         $progress = $request->input('progress');
         $others = $request->input('others');
+        $user = Auth::user();
 
         $query = Todo::query();
 
@@ -47,6 +49,8 @@ class TodoListController extends Controller
         if (!empty($others)) {
             $query = $query->where('others', 'like', '%' . $others . '%');
         }
+
+        $query = $query->where('user_id', $user->id);
 
         $todos = $query->paginate(10);
 
