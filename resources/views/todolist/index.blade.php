@@ -86,7 +86,7 @@
                     <td>{{ $todo->schedule }}</td>
                     <td>{{ $todo->progress }}</td>
                     <td>{{ $todo->others }}</td>
-                    <td><button type="button" class="btn btn-primary">編集</button></td>
+                    <td><a class="btn btn-primary" href="{{ route('todolist.edit', ['id'=>$todo->id]) }}">編集</a></td>
                     <td><button type="button" class="btn btn-danger">削除</button></td>
                 </tr>
                 @endforeach

@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [App\Http\Controllers\TodoListController::class, 'index']);
         Route::get('create',[App\Http\Controllers\TodoListController::class, 'showCreateTodo']);
         Route::post('create',[App\Http\Controllers\TodoListController::class, 'executeCreateTodo']);
+        Route::get('/edit/{id}', [App\Http\Controllers\TodoListController::class, 'showEditTodo'])->name('todolist.edit');;
     });
 });
 

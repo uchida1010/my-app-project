@@ -13,7 +13,6 @@ class TodoListController extends Controller
 
     public function index(Request $request)
     {
-
         $todos = Todo::paginate(10);
 
         $name = $request->input('name');
@@ -97,5 +96,17 @@ class TodoListController extends Controller
             return redirect('todolist/create')->withInput();
         }
         return redirect('todolist');
+    }
+
+    public function showEditTodo($id)
+    {   
+        $todos = Todo::find($id);
+
+        $todos_array = [
+            'rank_array' => FormValue::rank_array,
+            'progress_array' => FormValue::progress_array
+        ];
+
+        return view('todolist.edittodo', compact('todos'))->with($todos_array);
     }
 }
