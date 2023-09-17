@@ -38,4 +38,19 @@ class Todo extends Model
             return false;
         }
     }
+
+    public function editTodo($validated, $id)
+    {
+
+        try {
+            DB::beginTransaction();
+            Todo::where('id', $id)->update($validated);
+            DB::commit();
+            return true;
+        } catch (QueryException $e) {
+            Log::error("TODOの更新に失敗しました。".$e->getMessage());
+            DB::rollBack();
+            return false;
+        }
+    }
 }

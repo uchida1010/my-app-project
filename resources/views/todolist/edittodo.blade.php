@@ -10,7 +10,7 @@
     <div class="search-wrap">
         <div class="create-box">
             <div class="search-form">
-                <form action="" method="post">
+                <form action="{{ route('todolist.editexecute', ['id'=>$todos->id]) }}" method="post">
                     @csrf
                     <table class="create-table">
                         <tbody>

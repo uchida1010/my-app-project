@@ -6,6 +6,7 @@ use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Const\FormValue;
 use App\Http\Requests\TodoCreateRequest;
+use App\Http\Requests\TodoEditRequest;
 use Illuminate\Support\Facades\Auth;
 
 class TodoListController extends Controller
@@ -108,5 +109,18 @@ class TodoListController extends Controller
         ];
 
         return view('todolist.edittodo', compact('todos'))->with($todos_array);
+    }
+
+    public function executeEditTodo(TodoEditRequest $request, $id)
+    {
+        $validated = $request->validated();
+        $todos = new Todo;
+
+        $todoedit = $todos->editTodo($validated, $id);
+
+        if ($todoedit === false) {
+            return redirect( route('todolist.editexecute', ['id'=>$id]) )->withInput();
+        }
+        return redirect('todolist');
     }
 }
