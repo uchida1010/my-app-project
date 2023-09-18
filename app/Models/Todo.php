@@ -44,11 +44,26 @@ class Todo extends Model
 
         try {
             DB::beginTransaction();
-            Todo::where('id', $id)->update($validated);
+            Todo::find($id)->update($validated);
             DB::commit();
             return true;
         } catch (QueryException $e) {
             Log::error("TODOの更新に失敗しました。".$e->getMessage());
+            DB::rollBack();
+            return false;
+        }
+    }
+
+    public function deleteTodo($id)
+    {
+
+        try {
+            DB::beginTransaction();
+            Todo::find($id)->delete();
+            DB::commit();
+            return true;
+        } catch (QueryException $e) {
+            Log::error("TODOの削除に失敗しました。".$e->getMessage());
             DB::rollBack();
             return false;
         }

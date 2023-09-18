@@ -87,7 +87,7 @@
                     <td>{{ $todo->progress }}</td>
                     <td>{{ $todo->others }}</td>
                     <td><a class="btn btn-primary" href="{{ route('todolist.editshow', ['id'=>$todo->id]) }}">編集</a></td>
-                    <td><button type="button" class="btn btn-danger">削除</button></td>
+                    <td><a class="btn btn-danger" href="{{ route('todolist.delete', ['id'=>$todo->id]) }}">削除</a></td>
                 </tr>
                 @endforeach
             </tbody>

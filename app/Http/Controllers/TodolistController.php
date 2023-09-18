@@ -123,4 +123,13 @@ class TodoListController extends Controller
         }
         return redirect('todolist');
     }
+
+    public function deleteTodo($id)
+    {
+        $todos = new Todo;
+
+        $tododelete = $todos->deleteTodo($id);
+
+        return redirect('todolist');
+    }
 }
