@@ -87,7 +87,11 @@
                     <td>{{ $todo->progress }}</td>
                     <td>{{ $todo->others }}</td>
                     <td><a class="btn btn-primary" href="{{ route('todolist.editshow', ['id'=>$todo->id]) }}">編集</a></td>
-                    <td><a class="btn btn-danger" href="{{ route('todolist.delete', ['id'=>$todo->id]) }}">削除</a></td>
+                    <td><form action="{{ route('todolist.delete', ['id'=>$todo->id]) }}" method="POST">
+                        @csrf
+                        <input type="submit" class="btn btn-danger input-box" value="削除">
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
