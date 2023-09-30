@@ -8,6 +8,7 @@ use App\Http\Const\FormValue;
 use App\Http\Requests\TodoCreateRequest;
 use App\Http\Requests\TodoEditRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TodoListController extends Controller
 {
@@ -54,6 +55,10 @@ class TodoListController extends Controller
 
         $todos = $query->paginate(10);
 
+        $comTodos = DB::table('todos')->select('progress')->where('progress', '=', '完了')->where('user_id', '=', $user->id)->get();
+        $middleTodos = DB::table('todos')->select('progress')->where('progress', '=', '対応中')->where('user_id', '=', $user->id)->get();
+        $nonTodos = DB::table('todos')->select('progress')->where('progress', '=', '未着手')->where('user_id', '=', $user->id)->get();
+
         $todos_array = [
             'todos' => $todos,
             'name' => $name,
@@ -63,7 +68,10 @@ class TodoListController extends Controller
             'progress' => $progress,
             'others' => $others,
             'rank_array' => FormValue::rank_array,
-            'progress_array' => FormValue::progress_array
+            'progress_array' => FormValue::progress_array,
+            'comTodos' => count($comTodos),
+            'middleTodos' => count($middleTodos),
+            'nonTodos' => count($nonTodos)
         ];
 
         return view('todolist.index')->with($todos_array);

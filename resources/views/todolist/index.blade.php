@@ -58,6 +58,11 @@
             </div>
         </div>
     </div>
+    <div class="todos-count">
+        <div class="complete">完了：{{ $comTodos }}</div>
+        <div class="middle-complete">対応中：{{ $middleTodos }}</div>
+        <div class="non-complete">未着手：{{ $nonTodos }}</div>
+    </div>
     <!--テーブル-->
     <div class=" table-wrap">
         <table class="table">
