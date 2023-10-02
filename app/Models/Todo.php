@@ -68,4 +68,10 @@ class Todo extends Model
             return false;
         }
     }
+
+
+    public function countTodos($user_id)
+    {
+        return Todo::selectRaw('progress, COUNT(progress) AS count')->where('user_id', '=', $user_id)->groupBy('progress')->get();
+    }
 }

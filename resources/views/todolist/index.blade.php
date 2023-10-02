@@ -59,9 +59,9 @@
         </div>
     </div>
     <div class="todos-count">
-        <div class="complete">完了：{{ $comTodos }}</div>
-        <div class="middle-complete">対応中：{{ $middleTodos }}</div>
-        <div class="non-complete">未着手：{{ $nonTodos }}</div>
+        @foreach($counttodos as $counttodo)
+        <div class="complete">{{ $counttodo['progress'] }}:{{ $counttodo['count'] }}</div>
+        @endforeach
     </div>
     <!--テーブル-->
     <div class=" table-wrap">
