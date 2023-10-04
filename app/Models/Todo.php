@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Todo extends Model
 {
@@ -73,5 +74,10 @@ class Todo extends Model
     public function countTodos($user_id)
     {
         return Todo::selectRaw('progress, COUNT(progress) AS count')->where('user_id', '=', $user_id)->groupBy('progress')->get();
+    }
+
+    public function progress(): HasMany
+    {
+        return $this->hasMany(Progress::class);
     }
 }

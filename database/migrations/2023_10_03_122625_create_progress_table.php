@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('todos', function (Blueprint $table) {
+        Schema::create('progress', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('name',100);
-            $table->string('rank',100);
-            $table->date('deadline');
-            $table->date('schedule');
-            $table->foreignId('progress_id');
-            $table->string('others')->nullable();
+            $table->integer('name');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('todos');
+        Schema::dropIfExists('progress');
     }
 };

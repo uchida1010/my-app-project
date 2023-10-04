@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
         User::factory()
             ->count(5)
             ->hasTodo(10)
+            ->hasProgress(3)
             ->create();
     }
 }
