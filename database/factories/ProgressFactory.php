@@ -16,9 +16,6 @@ class ProgressFactory extends Factory
      */
     public function definition()
     {
-        $int = 1;
-        return [
-            'name' => $int++,
-        ];
+
     }
 }
