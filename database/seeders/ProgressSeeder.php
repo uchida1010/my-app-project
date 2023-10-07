@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Progress;
+use App\Http\Const\FormValue;
 
 class ProgressSeeder extends Seeder
 {
@@ -15,9 +16,9 @@ class ProgressSeeder extends Seeder
      */
     public function run()
     {
-    for( $i = 1; $i <= 3; $i++ ) { 
+    for( $i = 0; $i < 3; $i++ ) { 
         Progress::create([
-        'name' => $i
+        'name' => FormValue::progress_array[$i]
         ]);
       }
     }
