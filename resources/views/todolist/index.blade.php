@@ -39,10 +39,13 @@
                         </div>
                         <div class="search-item">
                             完了：
-                            <select name="progress">
+                            <select name="progress_id">
                                 <option value="" >選択してください</option>
+                                @php
+                                $i = 1;
+                                @endphp
                                 @foreach($progress_array as $progress_value)
-                                <option value="{{$progress_value}}" @if("$progress_value" == $progress) selected @endif>{{ $progress_value }}</option>
+                                <option value="{{ $i++ }}" @if("$progress_value" == $progress) selected @endif>{{ $progress_value }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -89,7 +92,7 @@
                     <td>{{ $todo->rank }}</td>
                     <td>{{ $todo->deadline }}</td>
                     <td>{{ $todo->schedule }}</td>
-                    <td>{{ $todo->progress }}</td>
+                    <td>{{ $todo->progress->name }}</td>
                     <td>{{ $todo->others }}</td>
                     <td><a class="btn btn-primary" href="{{ route('todolist.editshow', ['id'=>$todo->id]) }}">編集</a></td>
                     <td><form action="{{ route('todolist.delete', ['id'=>$todo->id]) }}" method="POST">

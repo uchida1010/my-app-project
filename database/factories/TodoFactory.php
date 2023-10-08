@@ -28,6 +28,7 @@ class TodoFactory extends Factory
             'rank' => Arr::random($rank),
             'deadline' => fake()->dateTimeBetween('+1 week', '+2 week'),
             'schedule' => fake()->dateTimeBetween('now', '+1 week'),
+            'progress_id' => '3',
             'others' => '備考'
         ];
     }
