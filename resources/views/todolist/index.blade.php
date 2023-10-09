@@ -39,13 +39,10 @@
                         </div>
                         <div class="search-item">
                             完了：
-                            <select name="progress_id">
+                            <select name="progress">
                                 <option value="" >選択してください</option>
-                                @php
-                                $i = 1;
-                                @endphp
                                 @foreach($progress_array as $progress_value)
-                                <option value="{{ $i++ }}" @if("$progress_value" == $progress) selected @endif>{{ $progress_value }}</option>
+                                <option value="{{ $progress_value }}" @if("$progress_value" == $progress) selected @endif>{{ $progress_value }}</option>
                                 @endforeach
                             </select>
                         </div>
