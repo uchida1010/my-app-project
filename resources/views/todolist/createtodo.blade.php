@@ -65,10 +65,10 @@
                             <tr>
                                 <th>完了(有無)</th>
                                 <td>
-                                    <select name="progress">
+                                    <select name="progress_id">
                                         <option value="">選択してください</option>
                                         @foreach($progress_array as $progress_value)
-                                        <option value="{{$progress_value}}" @selected($progress_value == old('progress'))>{{ $progress_value }}</option>
+                                        <option value="{{$loop->index+1}}" @selected($progress_value == old('progress'))>{{ $progress_value }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('progress'))

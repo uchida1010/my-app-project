@@ -39,10 +39,10 @@
                         </div>
                         <div class="search-item">
                             完了：
-                            <select name="progress">
+                            <select name="progress_id">
                                 <option value="" >選択してください</option>
                                 @foreach($progress_array as $progress_value)
-                                <option value="{{ $progress_value }}" @if("$progress_value" == $progress) selected @endif>{{ $progress_value }}</option>
+                                <option value="{{ $loop->index+1 }}" @if("$progress_value" == $progress_id) selected @endif>{{ $progress_value }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -60,7 +60,7 @@
     </div>
     <div class="todos-count">
         @foreach($counttodos as $counttodo)
-        <div class="complete">{{ $counttodo['progress'] }}:{{ $counttodo['count'] }}</div>
+        <div class="complete">{{ $progress_array[$loop->index] }}:{{ $counttodo['count'] }}</div>
         @endforeach
     </div>
     <!--テーブル-->

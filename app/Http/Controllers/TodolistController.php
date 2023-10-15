@@ -20,7 +20,7 @@ class TodoListController extends Controller
         $rank = $request->input('rank');
         $lower_limit = $request->input('lower_limit');
         $upper_limit = $request->input('upper_limit');
-        $progress = $request->input('progress');
+        $progress_id = $request->input('progress_id');
         $others = $request->input('others');
         $user = Auth::user();
         $todo = new Todo;
@@ -43,8 +43,8 @@ class TodoListController extends Controller
             $query = $query->where("deadline", "<=", $upper_limit);
         }
 
-        if (!empty($progress)) {
-            $query = $query->where('progress', $progress);
+        if (!empty($progress_id)) {
+            $query = $query->where('progress_id', $progress_id);
         }
 
         if (!empty($others)) {
@@ -61,7 +61,7 @@ class TodoListController extends Controller
             'rank' => $rank,
             'lower_limit' => $lower_limit,
             'upper_limit' => $upper_limit,
-            'progress' => $progress,
+            'progress_id' => $progress_id,
             'others' => $others,
             'rank_array' => FormValue::rank_array,
             'progress_array' => FormValue::progress_array,

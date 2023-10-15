@@ -30,7 +30,7 @@ class TodoCreateRequest extends FormRequest
             'rank' => ['required', Rule::in(['高', '中','低'])],
             'deadline' => 'required|date|after:today',
             'schedule' => 'required|date|after:deadline',
-            'progress' => ['required', Rule::in(['有', '無'])],
+            'progress_id' => 'required|integer|between:1,3',
             'others' => 'max:255'
           ];
     }
